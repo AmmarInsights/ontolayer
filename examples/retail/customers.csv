@@ -1,0 +1,21 @@
+customer_id,name,country,segment,signup_date
+C001,Aisha Smith,United States,consumer,2024-07-21
+C002,Ben Khan,Pakistan,consumer,2024-09-04
+C003,Chen Smith,United Kingdom,consumer,2024-09-07
+C004,Dara Khan,Japan,consumer,2024-07-14
+C005,Elif Khan,Germany,consumer,2024-02-18
+C006,Farid Sato,United States,consumer,2024-10-04
+C007,Grace Weber,Pakistan,consumer,2024-10-19
+C008,Hiro Sato,United Kingdom,consumer,2024-04-02
+C009,Ines Ali,Japan,consumer,2024-05-14
+C010,Jamal Weber,Germany,consumer,2024-10-10
+C011,Kira Ali,United States,consumer,2024-02-19
+C012,Liam Ali,Pakistan,consumer,2024-06-04
+C013,Mina Ali,United Kingdom,consumer,2024-10-02
+C014,Noor Ali,Japan,consumer,2024-08-22
+C015,Omar Ali,Germany,business,2024-06-15
+C016,Priya Ali,United States,business,2024-06-10
+C017,Quinn Weber,Pakistan,consumer,2024-12-25
+C018,Rosa Weber,United Kingdom,consumer,2024-10-10
+C019,Sven Ali,Japan,business,2024-06-24
+C020,Tara Sato,Germany,business,2024-10-03

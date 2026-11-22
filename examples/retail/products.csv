@@ -1,0 +1,13 @@
+product_id,name,category,price
+P001,Laptop,electronics,1200.0
+P002,Headphones,electronics,150.0
+P003,Monitor,electronics,320.0
+P004,Desk,furniture,410.0
+P005,Chair,furniture,230.0
+P006,Lamp,furniture,45.0
+P007,Notebook,stationery,4.5
+P008,Pen set,stationery,12.0
+P009,Backpack,accessories,60.0
+P010,Water bottle,accessories,18.0
+P011,Keyboard,electronics,85.0
+P012,Mouse,electronics,35.0

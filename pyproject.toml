@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ontolayer"
+version = "0.1.0"
+description = "Open-source business ontology layer: define concepts in YAML, build a knowledge graph from your data, and expose it to agents over MCP."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+keywords = ["ontology", "knowledge-graph", "mcp", "semantic-layer", "agents"]
+dependencies = [
+    "pydantic>=2.5",
+    "pyyaml>=6.0",
+    "networkx>=3.0",
+    "mcp>=1.2",
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+ontolayer = "ontolayer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

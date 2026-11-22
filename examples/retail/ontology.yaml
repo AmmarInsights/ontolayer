@@ -1,0 +1,98 @@
+name: retail
+version: "0.1"
+description: >
+  A small online shop. Customers place orders; each order contains order items
+  that refer to products. Used to demo OntoLayer end to end.
+
+concepts:
+  - name: Customer
+    description: A person or company that buys from the shop.
+    synonyms: [client, shopper, buyer]
+    source: {adapter: csv, path: customers.csv, key: customer_id}
+    properties:
+      - {name: name, type: string, description: Full name of the customer.}
+      - {name: country, type: string, description: Country where the customer lives., synonyms: [nation, region]}
+      - {name: segment, type: string, description: "Customer type: consumer or business."}
+      - {name: signup_date, type: date, description: Date the customer registered., synonyms: [joined]}
+
+  - name: Product
+    description: An item the shop sells.
+    synonyms: [item, sku, article]
+    source: {adapter: csv, path: products.csv, key: product_id}
+    properties:
+      - {name: name, type: string, description: Product name.}
+      - {name: category, type: string, description: "Product family, for example electronics or furniture."}
+      - {name: price, type: float, description: Current list price in USD., synonyms: [cost]}
+
+  - name: Order
+    description: A purchase placed by one customer on one day.
+    synonyms: [purchase, transaction]
+    source: {adapter: csv, path: orders.csv, key: order_id}
+    properties:
+      - {name: order_date, type: date, description: Day the order was placed., synonyms: [date]}
+      - {name: status, type: string, description: "Order state: completed, pending or cancelled."}
+      - {name: total, type: float, description: Order value in USD., synonyms: [amount, value]}
+
+  - name: OrderItem
+    description: One product line inside an order.
+    synonyms: [line item, order line]
+    source: {adapter: csv, path: order_items.csv, key: item_id}
+    properties:
+      - {name: quantity, type: integer, description: Units of the product bought., synonyms: [units]}
+
+relations:
+  - name: placed_by
+    from: Order
+    to: Customer
+    inverse: places
+    cardinality: many_to_one
+    foreign_key: customer_id
+    description: The customer who placed the order.
+  - name: part_of
+    from: OrderItem
+    to: Order
+    inverse: contains
+    cardinality: many_to_one
+    foreign_key: order_id
+    description: The order a line item belongs to.
+  - name: for_product
+    from: OrderItem
+    to: Product
+    inverse: sold_in
+    cardinality: many_to_one
+    foreign_key: product_id
+    description: The product on a line item.
+
+metrics:
+  - name: Revenue
+    description: Money earned from completed orders (cancelled and pending orders excluded).
+    synonyms: [sales, income, turnover]
+    concept: Order
+    aggregation: sum
+    property: total
+    filters: {status: completed}
+    unit: USD
+  - name: Order Count
+    description: Number of orders placed, any status.
+    synonyms: [number of orders, how many orders]
+    concept: Order
+    aggregation: count
+  - name: Average Order Value
+    description: Mean value of completed orders.
+    synonyms: [aov, average basket]
+    concept: Order
+    aggregation: avg
+    property: total
+    filters: {status: completed}
+    unit: USD
+  - name: Units Sold
+    description: Total quantity of products on order lines.
+    synonyms: [volume]
+    concept: OrderItem
+    aggregation: sum
+    property: quantity
+  - name: Customer Count
+    description: Number of customers.
+    synonyms: [number of customers, how many customers]
+    concept: Customer
+    aggregation: count
